@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="edu.furb.exemplobanco.ClienteForm" >
+
+    <TextView
+        android:id="@+id/textNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/Nome" />
+
+    <EditText
+        android:id="@+id/editNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textNome"
+        android:layout_alignBottom="@+id/textNome"
+        android:layout_marginLeft="38dp"
+        android:layout_toRightOf="@+id/textNome"
+        android:ems="10"
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textDocumento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textNome"
+        android:layout_below="@+id/editNome"
+        android:layout_marginTop="28dp"
+        android:text="@string/Documento" />
+
+    <TextView
+        android:id="@+id/textTelefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textDocumento"
+        android:layout_below="@+id/textDocumento"
+        android:layout_marginTop="29dp"
+        android:text="@string/Telefone" />
+
+    <TextView
+        android:id="@+id/TextEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textTelefone"
+        android:layout_below="@+id/textTelefone"
+        android:layout_marginTop="32dp"
+        android:text="@string/Email" />
+
+    <EditText
+        android:id="@+id/editDocumento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textTelefone"
+        android:layout_alignLeft="@+id/editNome"
+        android:layout_alignRight="@+id/editNome"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/editTelefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textTelefone"
+        android:layout_alignLeft="@+id/editDocumento"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/TextEmail"
+        android:layout_toRightOf="@+id/textDocumento"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextEmail"
+        android:layout_alignRight="@+id/editEmail"
+        android:layout_centerVertical="true"
+        android:text="@string/Salvar" />
+
+</RelativeLayout>

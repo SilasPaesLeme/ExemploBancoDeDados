@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ExemploBanco</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_cliente">Cadastro de clientes</string>
+    <string name="Nome">Nome</string>
+    <string name="Documento">Documento</string>
+    <string name="Telefone">Telefone</string>
+    <string name="Email">Email</string>
+    <string name="Salvar">Salvar</string>
+    <string name="novo_cliente">Novo Cliente</string>
+
+</resources>
