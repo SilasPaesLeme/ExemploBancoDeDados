@@ -25,14 +25,16 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
+        public static final int FrameLayout1=0x7f080009;
         public static final int TextEmail=0x7f080004;
-        public static final int action_settings=0x7f080009;
+        public static final int action_settings=0x7f08000b;
         public static final int btnSalvar=0x7f080008;
         public static final int editDocumento=0x7f080005;
         public static final int editEmail=0x7f080007;
         public static final int editNome=0x7f080001;
         public static final int editTelefone=0x7f080006;
-        public static final int novo_cliente=0x7f08000a;
+        public static final int listClientes=0x7f08000a;
+        public static final int novo_cliente=0x7f08000c;
         public static final int textDocumento=0x7f080002;
         public static final int textNome=0x7f080000;
         public static final int textTelefone=0x7f080003;
