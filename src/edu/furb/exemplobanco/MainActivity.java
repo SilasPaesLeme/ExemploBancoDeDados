@@ -1,18 +1,59 @@
 package edu.furb.exemplobanco;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import edu.fubr.exemplobanco.R;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 public class MainActivity extends Activity {
+
+	private DatabaseHelper helper;
+	private ListView listClientes;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		helper = new DatabaseHelper(this);
+		listClientes = (ListView) findViewById(R.id.listClientes);
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		
+		String[] from = new String[]{"nome", "telefone"};
+		int[] to = new int[]{android.R.id.text1, android.R.id.text2};
+		SimpleAdapter adapter = new SimpleAdapter(this, listarClientes(), android.R.layout.simple_list_item_2, from, to);
+		listClientes.setAdapter(adapter);
+	}
+	
+	private List<Map<String, String>> listarClientes() {
+		List<Map<String, String>> dados = new ArrayList<>();
+		
+		SQLiteDatabase db = helper.getReadableDatabase();
+		Cursor cursor = db.rawQuery("SELECT nome, telefone FROM clientes ORDER BY nome", null);
+		cursor.moveToFirst();
+		for(int i = 0; i < cursor.getCount(); i++){
+			Map<String, String> rec = new HashMap<>();
+			rec.put("nome", cursor.getString(0));
+			rec.put("telefone", cursor.getString(1));
+			dados.add(rec);
+			cursor.moveToNext();
+		}
+		return dados;
 	}
 
 	@Override

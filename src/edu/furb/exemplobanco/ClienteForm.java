@@ -46,7 +46,7 @@ public class ClienteForm extends Activity {
 				values.put("email", edEmail.getText().toString());
 				db.insert("clientes", null, values);
 				
-				Toast.makeText(ClienteForm.this, "Cliente cadastrado comsucesso!!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(ClienteForm.this, "Cliente cadastrado com sucesso!!", Toast.LENGTH_SHORT).show();
 				finish();
 			}
 		});
