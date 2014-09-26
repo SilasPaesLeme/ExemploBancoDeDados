@@ -2,6 +2,7 @@ package edu.furb.exemplobanco;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,14 +14,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 import edu.fubr.exemplobanco.R;
 
-public class ClienteForm extends Activity {
+public class ClienteForm extends Activity implements OnClickListener{
 
+	private long id;
 	private EditText edNome;
 	private EditText edDocumento;
 	private EditText edTelefone;
 	private EditText edEmail;
 	private Button btSalvar;
-	private DatabaseHelper database;
+	private DatabaseHelper helper;
 	
 
 	@Override
@@ -34,24 +36,9 @@ public class ClienteForm extends Activity {
 		edEmail = (EditText) findViewById(R.id.editEmail);
 		
 		btSalvar = (Button) findViewById(R.id.btnSalvar);
-		btSalvar.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				SQLiteDatabase db = database.getWritableDatabase();
-				ContentValues values = new ContentValues();
-				values.put("nome", edNome.getText().toString());
-				values.put("documento", edDocumento.getText().toString());
-				values.put("telefone", edTelefone.getText().toString());
-				values.put("email", edEmail.getText().toString());
-				db.insert("clientes", null, values);
-				
-				Toast.makeText(ClienteForm.this, "Cliente cadastrado com sucesso!!", Toast.LENGTH_SHORT).show();
-				finish();
-			}
-		});
+		btSalvar.setOnClickListener(this);
 		
-		database = new DatabaseHelper(this); 
+		helper = new DatabaseHelper(this); 
 	}
 
 	@Override
@@ -71,5 +58,54 @@ public class ClienteForm extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	protected void onDestroy() {
+		helper.close();
+		super.onDestroy();
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		String _id = getIntent().getStringExtra("_id");
+		if(_id == null){
+			id = -1;
+		}else{
+			id = Long.parseLong(_id);
+			loadData();
+		}
+	}
+
+	private void loadData() {
+		SQLiteDatabase db = helper.getReadableDatabase();
+		Cursor cursor = db.rawQuery("Select nome, documento, telefone,  email from clientes where _id = ?", new String[]{String.valueOf(id)});
+		cursor.moveToFirst();
+		edNome.setText(cursor.getString(0));
+		edDocumento.setText(cursor.getString(1));
+		edTelefone.setText(cursor.getString(2));
+		edEmail.setText(cursor.getString(3));
+		cursor.close();
+	}
+
+	@Override
+	public void onClick(View v) {
+		SQLiteDatabase db = helper.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put("nome", edNome.getText().toString());
+		values.put("documento", edDocumento.getText().toString());
+		values.put("telefone", edTelefone.getText().toString());
+		values.put("email", edEmail.getText().toString());
+		
+		if (this.id < 0){
+			db.insert("clientes", null, values);
+			Toast.makeText(ClienteForm.this, "Cliente cadastrado com sucesso!!", Toast.LENGTH_SHORT).show();
+		}else{
+			db.update("clientes", values, "_id = ?", new String[]{String.valueOf(id)});
+			Toast.makeText(ClienteForm.this, "Cliente atualizado com sucesso!!", Toast.LENGTH_SHORT).show();
+		}
+		
+		finish();
 	}
 }

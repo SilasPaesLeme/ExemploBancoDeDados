@@ -10,5 +10,11 @@
     <string name="Email">Email</string>
     <string name="Salvar">Salvar</string>
     <string name="novo_cliente">Novo Cliente</string>
+    <string name="dialog_editar">Editar</string>
+    <string name="dialog_excluir">Excluir</string>
+    <string name="dialog_titulo">Selecione</string>
+    <string name="dialog_sim">Sim</string>
+    <string name="dialog_nao">Não</string>
+    <string name="dialog_confirma">Tem Certeza?</string>
 
 </resources>

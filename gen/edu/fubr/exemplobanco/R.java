@@ -55,6 +55,12 @@ public final class R {
         public static final int Telefone=0x7f050005;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int dialog_confirma=0x7f05000e;
+        public static final int dialog_editar=0x7f050009;
+        public static final int dialog_excluir=0x7f05000a;
+        public static final int dialog_nao=0x7f05000d;
+        public static final int dialog_sim=0x7f05000c;
+        public static final int dialog_titulo=0x7f05000b;
         public static final int novo_cliente=0x7f050008;
         public static final int title_activity_cliente=0x7f050002;
     }
